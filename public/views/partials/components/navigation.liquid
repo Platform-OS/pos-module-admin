@@ -1,0 +1,17 @@
+{% function admin_menu_items = 'modules/core/hook/fire', hook: 'admin_menu' %}
+
+<div
+  class="-translate-x-full ease-in fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-gray-900 lg:translate-x-0 lg:static lg:inset-0">
+  <div class="flex items-center justify-center mt-8">
+    <div class="flex items-center">
+      <span class="mx-2 text-2xl font-semibold text-white">Admin</span>
+    </div>
+  </div>
+  <nav class="mt-10">
+    {% for item in admin_menu_items %}
+      <a aria-current="page" href="{{item.url}}" class="flex items-center px-6 py-2 mt-4 duration-200 border-l-4 bg-gray-600 bg-opacity-25 text-gray-100 border-gray-100">
+        <span class="mx-4">{{item.title}}</span>
+      </a>
+    {% endfor %}
+    </nav>
+</div>
