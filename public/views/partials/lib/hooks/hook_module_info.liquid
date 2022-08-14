@@ -1,0 +1,16 @@
+{% comment %}
+  Implements hook_module_info.
+{% endcomment %}
+{% parse_json info %}
+{
+  "name": "pOS Admin",
+  "machine_name": "admin",
+  "type": "module",
+  "version": "1.0.0",
+  "dependencies": [
+    "core"
+  ]
+}
+{% endparse_json %}
+
+{% return info %}
