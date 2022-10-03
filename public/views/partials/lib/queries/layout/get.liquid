@@ -1,0 +1,7 @@
+{% liquid
+  function admin_layout_implementations = 'modules/core/lib/commands/hook/fire', hook: 'admin_layout'
+  if admin_layout_implementations.first != blank
+    return admin_layout_implementations.first
+  endif
+  return 'modules/admin/layouts/default'
+%}
