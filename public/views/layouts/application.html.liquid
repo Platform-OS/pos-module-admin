@@ -1,33 +1,4 @@
-{% liquid
-  function admin_layout = 'modules/admin/lib/queries/layout/get'
-  function current_user = 'modules/user/lib/queries/user/current'
-  function admin_pages = 'modules/core/lib/commands/hook/fire', hook: 'admin_page'
-  assign admin_menu_items = '[]' | parse_json
-  assign current_page = nil
-  for page in admin_pages
-    function can = 'modules/permission/lib/helpers/can_do', requester: current_user, do: page.permission, access_callback: page.access_callback
-    if can
-      assign menu_item_active = false
-      if page.relative_path != blank and page.relative_path ==  context.location.pathname
-        assign current_page = page.partial | default: nil
-        assign menu_item_active = true
-      endif
-      if page.menu != blank
-        assign menu_item = page.menu
-        hash_assign menu_item['active'] = menu_item_active
-        if menu_item.link_attributes.href == blank
-          assign default_link_attributes = '{}' | parse_json
-          assign link_attributes = menu_item.link_attributes | default: default_link_attributes
-          hash_assign link_attributes['href'] = page.relative_path
-          hash_assign menu_item['link_attributes'] = link_attributes
-        endif
-        assign admin_menu_items = admin_menu_items | add_to_array: menu_item
-      endif
-    endif
-  endfor
-
-  include admin_layout, current_page: current_page, admin_menu_items: admin_menu_items
-%}
+{{ content_for_layout }}
 
 
 
