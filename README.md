@@ -1,6 +1,4 @@
-# Module name
-
-Admin module  
+# Admin module
 
 This module provides an admin interface for your app and other modules. It implements the `/admin` route and provides a hook for other modules to register their own admin page implementations.
 
@@ -14,7 +12,7 @@ The Module provides the `hook_admin_page` and the `hook_admin_layout` hooks.
 
 ### hook_admin_page
 If you want an admin page (or just a link) to show up in the admin navigation and the admin UI, you can implement `hook_admin_page.liquid`.  
-It should return a json object describing the page and/or navigation items:
+It should return an array of objects describing the page and/or navigation items:
 ```
 {% parse_json admin_pages %}
 [
