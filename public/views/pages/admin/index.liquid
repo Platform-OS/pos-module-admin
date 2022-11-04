@@ -3,7 +3,7 @@ slug: admin(/*path)
 layout: modules/admin/application
 ---
 {% liquid
-  function admin_layout = 'modules/admin/lib/queries/layout/get'
+  function admin_layout = 'modules/admin/lib/queries/layout/find'
   function current_user = 'modules/user/lib/queries/user/current'
   function admin_pages = 'modules/core/lib/commands/hook/fire', hook: 'admin_page'
   assign admin_menu_items = '[]' | parse_json

@@ -1,0 +1,9 @@
+{
+  "name": "pOS Admin",
+  "machine_name": "admin",
+  "type": "module",
+  "version": "1.0.0",
+  "dependencies": {
+    "core": "^1.0.0"
+  }
+}
