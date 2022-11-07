@@ -3,14 +3,13 @@
 {% endcomment %}
 {% parse_json info %}
 {
-  "name": "pOS Admin",
-  "machine_name": "admin",
-  "type": "module",
-  "version": "1.0.0",
-  "dependencies": [
-    "core"
-  ]
+  "name": "<%= &name =%>",
+  "machine_name": "<%= &machine_name =%>",
+  "type": "<%= &type =%>",
+  "version": "<%= &version =%>"
 }
 {% endparse_json %}
 
-{% return info %}
+{% liquid
+  return info
+%}

@@ -40,3 +40,10 @@ From the example above you can see that the `relative_path` (which is the admin 
 You can register your own admin layout file to provide a custom admin experience in your app.
 This is how the [Theme Manager Module](https://github.com/Platform-OS/pos-module-theme-manager) implements admin themes, by looking for available admin theme implementations and registering the admin layout from the currently selected active theme.
 The `admin_layou` hook simply returns the path of a liquid partial as a string.
+
+## Versioning
+
+```
+git fetch origin --tags
+npm version major | minor | patch
+```
