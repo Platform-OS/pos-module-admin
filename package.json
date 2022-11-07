@@ -1,0 +1,26 @@
+{
+  "name": "admin",
+  "version": "0.0.0",
+  "description": "Module description",
+  "scripts": {
+    "version": "(cd ../../ && pos-cli modules version admin -p) && git add template-values.json && auto-changelog -p && git add CHANGELOG.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Platform-OS/pos-module-admin.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Platform-OS/pos-module-admin/issues"
+  },
+  "homepage": "https://github.com/Platform-OS/pos-module-admin#readme",
+  "devDependencies": {
+    "auto-changelog": "^2.4.0"
+  },
+  "auto-changelog": {
+    "template": "changelog-template.hbs",
+    "unreleased": true,
+    "commitLimit": false
+  }
+}
