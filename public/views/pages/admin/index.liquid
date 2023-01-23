@@ -18,7 +18,7 @@ layout: modules/admin/application
     if can
       assign menu_item_active = false
 
-      assign path_match_regex = '^' | append: page.relative_path
+      assign path_match_regex = '^' | append: page.relative_path | append: '$'
       assign is_path_match = query_path | matches: path_match_regex
       if page.relative_path != blank and is_path_match
         assign current_page = page.partial | default: nil
@@ -38,5 +38,5 @@ layout: modules/admin/application
     endif
   endfor
 
-  include admin_layout, current_page: current_page, admin_menu_items: admin_menu_items, query_path: query_path
+  include admin_layout, current_page: current_page, admin_menu_items: admin_menu_items, query_path: query_path, context: context
 %}
