@@ -5,7 +5,13 @@ layout: modules/admin/application
 {% liquid
   function admin_layout = 'modules/admin/lib/queries/layout/get'
   function current_user = 'modules/user/lib/queries/user/current'
-  function admin_pages = 'modules/core/lib/commands/hook/fire', hook: 'admin_page'
+
+  function hook_admin_pages = 'modules/core/lib/commands/hook/fire', hook: 'admin_page'
+  assign params_to_modify = null | hash_merge: admin_pages: hook_admin_pages
+  function _ = 'modules/core/lib/commands/hook/alter', hook: 'admin_page', params_to_modify: params_to_modify
+
+  assign admin_pages = params_to_modify.admin_pages
+
   assign admin_menu_items = '[]' | parse_json
   assign current_page = nil
 
@@ -25,7 +31,7 @@ layout: modules/admin/application
       assign is_path_exact_match = query_path | matches: path_exact_match_regex
 
       # exact match always have higher priority
-      if page.relative_path != blank and is_path_exact_match and current_page == nil
+      if page.relative_path != blank and is_path_exact_match
         assign current_page = page.partial | default: nil
         assign menu_item_active = true
       elsif page.relative_path != blank and is_path_partial_match and current_page == nil
