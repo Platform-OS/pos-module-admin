@@ -18,9 +18,17 @@ layout: modules/admin/application
     if can
       assign menu_item_active = false
 
-      assign path_match_regex = '^' | append: page.relative_path | append: '$'
-      assign is_path_match = query_path | matches: path_match_regex
-      if page.relative_path != blank and is_path_match
+      assign path_partial_match_regex = '^' | append: page.relative_path
+      assign is_path_partial_match = query_path | matches: path_partial_match_regex
+
+      assign path_exact_match_regex = '^' | append: page.relative_path | append: '$'
+      assign is_path_exact_match = query_path | matches: path_exact_match_regex
+
+      # exact match always have higher priority
+      if page.relative_path != blank and is_path_exact_match and current_page == nil
+        assign current_page = page.partial | default: nil
+        assign menu_item_active = true
+      elsif page.relative_path != blank and is_path_partial_match and current_page == nil
         assign current_page = page.partial | default: nil
         assign menu_item_active = true
       endif
