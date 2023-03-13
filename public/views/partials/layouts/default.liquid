@@ -22,6 +22,14 @@
             %}
           </main>
         </section>
+
+        {% liquid
+          function flash = 'modules/core/commands/session/get', key: 'sflash'
+          if context.location.pathname != flash.from or flash.force_clear
+            function _ = 'modules/core/commands/session/clear', key: 'sflash'
+          endif
+          render 'modules/components/molecules/flashes', params: flash
+        %}
       </div>
     </div>
   </body>
