@@ -15,7 +15,7 @@ layout: modules/admin/application
   assign admin_menu_items = '[]' | parse_json
   assign current_page = nil
 
-  include 'modules/permission/lib/helpers/can_do_or_unauthorized', requester: current_user, do: 'admin_pages.view'
+  include 'modules/permission/lib/helpers/can_do_or_redirect', requester: current_user, do: 'admin_pages.view'
 
   assign query_path = '/' | append: context.params.slug | append: '/' | append: context.params.path
 
