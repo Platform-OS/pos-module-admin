@@ -2,7 +2,7 @@
   "name": "Admin",
   "machine_name": "admin",
   "type": "module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "dependencies": {
     "core": "^1.0.0",
     "permission": "^1.0.0",
