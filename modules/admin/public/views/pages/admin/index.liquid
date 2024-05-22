@@ -6,9 +6,9 @@ layout: modules/admin/application
   function admin_layout = 'modules/admin/lib/queries/layout/get'
   function current_user = 'modules/user/lib/queries/user/current'
 
-  function hook_admin_pages = 'modules/core/lib/commands/hook/fire', hook: 'admin_page'
+  function hook_admin_pages = 'modules/core/commands/hook/fire', hook: 'admin_page'
   assign params_to_modify = null | hash_merge: admin_pages: hook_admin_pages
-  function _ = 'modules/core/lib/commands/hook/alter', hook: 'admin_page', params_to_modify: params_to_modify
+  function _ = 'modules/core/commands/hook/alter', hook: 'admin_page', params_to_modify: params_to_modify
 
   assign admin_pages = params_to_modify.admin_pages
 
