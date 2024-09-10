@@ -4,7 +4,7 @@ layout: modules/admin/application
 ---
 {% liquid
   function admin_layout = 'modules/admin/lib/queries/layout/get'
-  function current_user = 'modules/user/lib/queries/user/current'
+  function current_user = 'modules/user/queries/user/current'
 
   function hook_admin_pages = 'modules/core/commands/hook/fire', hook: 'admin_page'
   assign params_to_modify = null | hash_merge: admin_pages: hook_admin_pages
@@ -15,12 +15,12 @@ layout: modules/admin/application
   assign admin_menu_items = '[]' | parse_json
   assign current_page = nil
 
-  include 'modules/permission/lib/helpers/can_do_or_redirect', requester: current_user, do: 'admin_pages.view'
+  include 'modules/user/helpers/can_do_or_redirect', requester: current_user, do: 'admin_pages.view'
 
   assign query_path = '/' | append: context.params.slug | append: '/' | append: context.params.path
 
   for page in admin_pages
-    function can = 'modules/permission/lib/helpers/can_do', requester: current_user, do: page.permission, access_callback: page.access_callback
+    function can = 'modules/user/helpers/can_do', requester: current_user, do: page.permission, access_callback: page.access_callback
     if can
       assign menu_item_active = false
 
