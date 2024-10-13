@@ -6,7 +6,7 @@ layout: modules/admin/application
   function admin_layout = 'modules/admin/lib/queries/layout/get'
   function current_user = 'modules/user/queries/user/current'
 
-  function hook_admin_pages = 'modules/core/commands/hook/fire', hook: 'admin_page'
+  function hook_admin_pages = 'modules/core/commands/hook/fire', hook: 'admin_page', merge_to_object: null
   assign params_to_modify = null | hash_merge: admin_pages: hook_admin_pages
   function _ = 'modules/core/commands/hook/alter', hook: 'admin_page', params_to_modify: params_to_modify
 
@@ -15,12 +15,14 @@ layout: modules/admin/application
   assign admin_menu_items = '[]' | parse_json
   assign current_page = nil
 
+  # platformos-check-disable ConvertIncludeToRender
   include 'modules/user/helpers/can_do_or_redirect', requester: current_user, do: 'admin_pages.view'
+  # platformos-check-enable ConvertIncludeToRender
 
   assign query_path = '/' | append: context.params.slug | append: '/' | append: context.params.path
 
   for page in admin_pages
-    function can = 'modules/user/helpers/can_do', requester: current_user, do: page.permission, access_callback: page.access_callback
+    function can = 'modules/user/helpers/can_do', requester: current_user, do: page.permission, access_callback: page.access_callback, entity: null
     if can
       assign menu_item_active = false
 

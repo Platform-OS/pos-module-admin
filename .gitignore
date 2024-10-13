@@ -1,3 +1,6 @@
 node_modules
 tmp/
 .pos
+modules/user
+modules/core
+modules/components

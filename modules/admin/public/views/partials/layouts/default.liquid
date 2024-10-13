@@ -9,10 +9,10 @@
   </head>
   <body class="bg-gray-100 font-sans leading-normal tracking-normal mt-12">
 
-    {% render 'modules/admin/components/header' %}
+    {% theme_render_rc 'components/admin/header' %}
     <div class="h-screen flex">
       <div class="flex-1 flex flex-col md:flex-row">
-        {% render 'modules/admin/components/navigation', admin_menu_items: admin_menu_items %}
+        {% theme_render_rc 'components/admin/navigation', admin_menu_items: admin_menu_items %}
         <section class="flex-1">
           <main class="main-content flex-1 mt-12 md:mt-2 pb-24 md:pb-5">
             {% liquid
@@ -24,11 +24,11 @@
         </section>
 
         {% liquid
-          function flash = 'modules/core/commands/session/get', key: 'sflash'
+          function flash = 'modules/core/commands/session/get', key: 'sflash', clear: null
           if context.location.pathname != flash.from or flash.force_clear
             function _ = 'modules/core/commands/session/clear', key: 'sflash'
           endif
-          render 'modules/components/molecules/flashes', params: flash
+          theme_render_rc 'components/molecules/flashes', params: flash
         %}
       </div>
     </div>
